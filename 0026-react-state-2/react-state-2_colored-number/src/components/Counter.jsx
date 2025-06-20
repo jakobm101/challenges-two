@@ -3,7 +3,9 @@ import { useState } from "react";
 
 export default function Counter() {
   const [value, setValue] = useState(0);
-  // const handleClick = () => setValue(value + 1);
+  const handleClick = ({ target }) => {
+    setValue(value + (target["textContent"] === "+" ? 1 : -1));
+  };
   return (
     <div className="counter">
       <h1>Colored Number</h1>
@@ -13,7 +15,7 @@ export default function Counter() {
           type="button"
           className="counter__button"
           aria-label="increment count"
-          // onClick={handleClick("+")}
+          onClick={handleClick}
         >
           +
         </button>
@@ -21,7 +23,7 @@ export default function Counter() {
           type="button"
           className="counter__button"
           aria-label="decrement count"
-          // onClick={handleClick("-")}
+          onClick={handleClick}
         >
           -
         </button>
