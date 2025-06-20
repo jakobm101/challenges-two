@@ -3,19 +3,22 @@ import Card from "./components/Card";
 export default function App() {
   const fruits = [];
   const names = ["banana", "apple", "cherry", "chili", "tomato"];
-  const colors = ["yellow", "red", "red", "red", "Tomato"];
-  names.map(()=> fruits.push({}))
+  const colors = ["yellow", "red", "red", "red", "green"];
+  names.map(() => fruits.push({}));
   fruits.map((fruit, index) => {
     fruit["name"] = names[index];
-    fruit['colors'] = colors[index];
-    fruit['index'] = index
+    fruit["color"] = colors[index];
+    fruit["index"] = index;
   });
-  console.log({fruits});
-  
+  console.log({ fruits });
 
   return (
     <div className="app">
-    {fruits.map((fruit)=> <Card key={fruit.index} >{fruit.name}</Card>)}
+      {fruits.map((fruit) => (
+        <Card color={fruit.color} key={fruit.index}>
+          {fruit.name}
+        </Card>
+      ))}
       <Card name="🍌 banana" />
       <Card />
     </div>
