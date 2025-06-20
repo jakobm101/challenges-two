@@ -4,6 +4,7 @@ export default function Form({ onClick }) {
     console.log('Form');
     onClick(event);
   }
+
   return (
     <form
       className="form"
