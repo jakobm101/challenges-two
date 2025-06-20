@@ -15,7 +15,9 @@ export default function App() {
 
   return (
     <div className="app">
+    {fruits.map((fruit)=> <Card key={fruit.index} >{fruit.name}</Card>)}
       <Card name="🍌 banana" />
+      <Card />
     </div>
   );
 }
