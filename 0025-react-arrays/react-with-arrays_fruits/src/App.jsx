@@ -10,7 +10,6 @@ export default function App() {
     fruit["color"] = colors[index];
     fruit["index"] = index;
   });
-  console.log({ fruits });
 
   return (
     <div className="app">
