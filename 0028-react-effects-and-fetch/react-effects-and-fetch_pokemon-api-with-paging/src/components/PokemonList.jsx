@@ -23,10 +23,10 @@ export default function PokemonList() {
 
   return (
     <main>
-      <button type="button" onClick={() => setPage(pokemon.previous)}>
+      <button disabled={!pokemon.previous} type="button" onClick={() => setPage(pokemon.previous)}>
         Previous Page
       </button>
-      <button type="button" onClick={() => setPage(pokemon.next)}>
+      <button disabled={!pokemon.next} type="button" onClick={() => setPage(pokemon.next)}>
         Next Page
       </button>
       <ul>
