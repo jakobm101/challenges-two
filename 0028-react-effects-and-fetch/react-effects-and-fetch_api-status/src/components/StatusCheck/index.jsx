@@ -22,15 +22,18 @@ export default function StatusCheck() {
      * is okay and false if it is not.
      **/
     // --v-- write your code here --v--
-    setStatusIcon("⏳")
-    let data = null;
+    setStatusIcon("⏳");
     try {
       const response = await fetch(apiStatusUrl);
-      data = await response.json();
+      if (!response.ok) {
+        throw new Error("Oh no!");
+      }
+      const data = await response.json();
+      setStatusIcon(data.status === "Ok" ? icons.ok : icons.error);
     } catch (error) {
+      setStatusIcon("🚨");
       console.log(error);
     }
-    setStatusIcon(data.status === "Ok" ? icons.ok : icons.error);
 
     // --^-- write your code here --^--
   }
