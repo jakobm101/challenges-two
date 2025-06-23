@@ -11,7 +11,14 @@ export default function App() {
     latitude: 0,
   });
 
-  async function getISSCoords() {}
+  useState(
+  async function getISSCoords() {
+    const response = await fetch(URL)
+    const data = await response.json()
+    console.log(data);
+    setCoords({longitude: data.longitude, latitude: data.latitude})
+  },[])
+
 
   return (
     <main>
@@ -19,7 +26,7 @@ export default function App() {
       <Controls
         longitude={coords.longitude}
         latitude={coords.latitude}
-        onRefresh={getISSCoords}
+        onRefresh={''}
       />
     </main>
   );
