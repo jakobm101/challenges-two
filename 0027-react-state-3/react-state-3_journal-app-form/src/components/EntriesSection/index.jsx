@@ -37,7 +37,6 @@ export const entries = [
 ];
 
 export default function EntriesSection({ entriesImport }) {
-  console.log({entriesImport});
   
   return (
     <section className="entries-section">

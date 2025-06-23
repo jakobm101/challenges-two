@@ -8,14 +8,25 @@ import { useState } from "react";
 
 function App() {
   const [entriesState, setEntries] = useState(entries);
-  console.log({entriesState});
-  
-  
+  const handleForm = (data) => {
+    console.log(data.get("motto"));
+    const newEntries = [
+      ...entries,
+      {
+        motto: data.get("motto"),
+        id: uid(),
+        notes: data.get("notes"),
+        date: new Date().toLocaleDateString("en-us", { dateStyle: "medium" }),
+      },
+    ];
+    setEntries(newEntries)
+  };
+
   return (
     <div className="app">
       <Header />
       <main className="app__main">
-        <EntryForm />
+        <EntryForm handleForm={handleForm} />
         <EntriesSection entriesImport={entriesState} />
       </main>
       <Footer />
