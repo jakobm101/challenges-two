@@ -3,6 +3,7 @@ import FontSelector from "./components/FontSelector";
 import Note from "./components/Note";
 import "./styles.css";
 
+
 export default function App() {
   const [note, setNote] = useState("");
   const [font, setFont] = useState("system-ui");
