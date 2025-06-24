@@ -1,16 +1,14 @@
 import { D6Button } from "./components/D6Button";
 import { getD6Roll } from "./utils";
 import useLocalStorageState from "use-local-storage-state";
-import { useState } from "react";
 import History from "./components/History";
 import "./styles.css";
 
 export default function App() {
-  const [rolls, setRolls] = useState([]);
+  const [rolls, setRolls] = useLocalStorageState('rolls', {defaultValue: []});
 
   const handleRoll = () => {
     setRolls([{ value: getD6Roll(), time: Date.now() }, ...rolls]);
-  console.table(rolls);
   };
 
   return (
@@ -19,7 +17,7 @@ export default function App() {
         <D6Button value={rolls[0]?.value} onRoll={handleRoll}/>
       </main>
       <aside className="app__aside">
-        <History rolls={[]} />
+        <History rolls={rolls} />
       </aside>
     </div>
   );
