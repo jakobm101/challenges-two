@@ -1,6 +1,3 @@
-// search for ∆∆∆
-// 
-
 import {
   getFirstNames,
   getFullNames,
@@ -80,20 +77,38 @@ test("getPeopleByAge() returns an array of people of a certain age", () => {
 
 test('getPeopleNamesOlderThan() returns an array of people full names older than a certain age, e.g. "Luke Skywalker"', () => {
   const result = getPeopleNamesOlderThan(people, 30);
-  expect(result).toEqual(['Max Mustermann', 'Erika Musterfrau'])
+  expect(result).toEqual(["Max Mustermann", "Erika Musterfrau"]);
 });
 
 test("getPeopleByLastName() returns an array of people of a certain lastName", () => {
-  const result = getPeopleByLastName(people, 'Doe')
-  expect(result).toEqual(['∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆'])
+  const result = getPeopleByLastName(people, "Doe");
+  expect(result).toEqual(["Jane Doe", "John Doe"]);
 });
 
 // Hint: use Array.prototype.find for the implementation
-test("findPersonById() returns the full object of a person", () => {});
+test("findPersonById() returns the full object of a person", () => {
+  const result = findPersonById(people, 3);
+  expect(result).toEqual("Max");
+});
 
 // Hint: implementation should use Array.prototype.some
-test("isAnyoneOlderThan() returns true if any person is older than the given age", () => {});
+test("isAnyoneOlderThan() returns true if any person is older than the given age", () => {
+  const result = isAnyoneOlderThan(people, 30);
+  expect(result).toEqual(true);
+});
 
-test("isAnyoneOlderThan() returns false if no person is older than the given age", () => {});
+test("isAnyoneOlderThan() returns false if no person is older than the given age", () => {
+  const result = isAnyoneOlderThan(people, 50);
+  expect(result).toEqual(false);
+});
 
-test("getLastNamesSortedByAge() returns an array of last names sorted by age", () => {});
+test("getLastNamesSortedByAge() returns an array of last names sorted by age", () => {
+  const result = getLastNamesSortedByAge(people);
+  expect(result).toEqual([
+    "Doe (18)",
+    "Doe (21)",
+    "Skywalker (23)",
+    "Mustermann (32)",
+    "Musterfrau (38)",
+  ]);
+});

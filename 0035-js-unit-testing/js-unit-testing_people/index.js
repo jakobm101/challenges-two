@@ -20,10 +20,22 @@ export function getPeopleNamesOlderThan(people, age) {
   return result.map((person) => person.firstName + " " + person.lastName);
 }
 
-export function getPeopleByLastName(people, lastName) {}
+export function getPeopleByLastName(people, lastName) {
+  const result = people.filter((person) => person.lastName === lastName);
+  return result.map((person) => person.firstName + " " + person.lastName);
+}
 
-export function findPersonById(people, id) {}
+export function findPersonById(people, id) {
+  const result = people.find((person) => person.id === id);
+  return result.firstName;
+}
 
-export function isAnyoneOlderThan(people, age) {}
+export function isAnyoneOlderThan(people, age) {
+  const result = people.some((person) => person.age >= age);
+  return result;
+}
 
-export function getLastNamesSortedByAge(people) {}
+export function getLastNamesSortedByAge(people) {
+  const result = people.sort((a, b) => a.age - b.age);
+  return result.map((person) => `${person.lastName} (${person.age})`);
+}
