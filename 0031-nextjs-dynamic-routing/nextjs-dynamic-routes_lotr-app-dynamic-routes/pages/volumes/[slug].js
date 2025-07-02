@@ -1,5 +1,4 @@
 import { volumes } from "@/lib/data";
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -7,7 +6,8 @@ export default function VolumeDetail() {
   const router = useRouter();
   const { slug } = router.query;
 
-  const volume = volumes.find((volume) => volume.slug === slug);
+  const volumeIndex = volumes.findIndex((volume) => volume.slug === slug);
+  const volume = volumes[volumeIndex];
   const { title, description, books, cover } = volume;
 
   function getRandomElement(array) {
@@ -15,14 +15,25 @@ export default function VolumeDetail() {
   }
 
   const handleRandom = () => {
-    const randomVolume = getRandomElement(volumes)
+    const randomVolume = getRandomElement(volumes);
     router.push(randomVolume.slug);
+  };
+
+  const handleNext = (_,direction = 1) => {
+    router.push(volumes[volumeIndex + direction].slug);
   };
 
   return (
     <>
-      <button onClick={() => router.push('/volumes')}>Back to overview</button>
+      <button onClick={() => router.push("/volumes")}>Back to overview</button>
       <button onClick={handleRandom}>Go to random page</button>
+      <button onClick={handleNext} disabled={!volumes[volumeIndex + 1]}>
+        Next Volume
+      </button>
+      <button onClick={() => handleNext(true,-1)} disabled={!volumes[volumeIndex - 1]}>
+        Previous Volume
+      </button>
+
       <h1>{title}</h1>
       <p>{description}</p>
       <ul>
