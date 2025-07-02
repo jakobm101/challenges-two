@@ -2,8 +2,8 @@ import { volumes } from "@/lib/data";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Fellowship() {
-  const { title, description, books, cover } = volumes[0];
+export default function Return() {
+  const { title, description, books, cover } = volumes[2];
   return (
     <>
       <Link href={"/"}>All Volumes</Link>
