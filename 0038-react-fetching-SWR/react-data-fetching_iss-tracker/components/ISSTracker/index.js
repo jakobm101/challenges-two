@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 import Controls from "../Controls/index";
 import Map from "../Map/index";
 
@@ -9,28 +10,12 @@ export default function ISSTracker() {
     longitude: 0,
     latitude: 0,
   });
-
-  async function getISSCoords() {
-    try {
-      const response = await fetch(URL);
-      if (response.ok) {
-        const data = await response.json();
-        setCoords({ longitude: data.longitude, latitude: data.latitude });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const fetcher = (url) => fetch(url).then((response) => response.json());
+  const { data, mutate } = useSWR(URL, fetcher, { refreshInterval: 1000 });
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      getISSCoords();
-    }, 5000);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+    if (data) setCoords({ longitude: data.longitude, latitude: data.latitude });
+  }, [data]);
 
   return (
     <main>
@@ -38,7 +23,7 @@ export default function ISSTracker() {
       <Controls
         longitude={coords.longitude}
         latitude={coords.latitude}
-        onRefresh={getISSCoords}
+        onRefresh={mutate}
       />
     </main>
   );
