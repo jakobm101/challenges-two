@@ -18,6 +18,7 @@ You will need to fetch on interval and refetch on click of a button.
   - for now: the `onRefresh` prop passed to the `Controls` component (you will adapt this in a minute).
 
 - Implement fetching of the same data with `SWR`.
+if(error)
 
   - `SWR` is already installed, so you just have to import it.
   - Handle the `isLoading` and `error` states provided by `SWR` as well.
