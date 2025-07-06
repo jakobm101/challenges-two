@@ -30,6 +30,14 @@ export default function App({ Component, pageProps }) {
   //   setLights(newLights)
   // };
 
+  const toggleLight = (id) => {
+    setLights(
+      lights.map((light) =>
+        light.id === id ? { ...light, isOn: !light.isOn } : light
+      )
+    );
+  };
+
   return (
     <Layout>
       <GlobalStyle />
