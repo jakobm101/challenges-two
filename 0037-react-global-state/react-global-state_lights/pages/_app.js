@@ -30,8 +30,9 @@ export default function App({ Component, pageProps }) {
       )
     );
   };
-  console.log('count app', countLightsOn);
   
+  const allOff = () => {console.log('alloff');
+  ;setLights(lights.map(light => {return {...light, isOn: false}}))}
 
   return (
     <Layout>
@@ -41,6 +42,7 @@ export default function App({ Component, pageProps }) {
         lights={lights}
         toggleLight={toggleLight}
         countLightsOn={countLightsOn}
+        allOff={allOff}
       />
     </Layout>
   );
