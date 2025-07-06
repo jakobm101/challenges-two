@@ -22,14 +22,23 @@ export default function App({ Component, pageProps }) {
   const countLightsOn = lights.reduce((acc, curr) => {
     return acc + curr.isOn;
   }, 0);
-  
-  const toggleLight = (id) => console.log('toggle', lights);
-  
+
+  // const toggleLight = (id) => {
+  //   const newLight = lights.find(light => light.id === id)
+  //   newLight.isOn = !newLight.isOn
+  //   const newLights = lights.map(light => (light.id === newLight.id)? newLight : light)
+  //   setLights(newLights)
+  // };
 
   return (
     <Layout>
       <GlobalStyle />
-      <Component {...pageProps} lights={lights} toggleLight={toggleLight} countLightsOn={countLightsOn}/>
+      <Component
+        {...pageProps}
+        lights={lights}
+        toggleLight={toggleLight}
+        countLightsOn={countLightsOn}
+      />
     </Layout>
   );
 }

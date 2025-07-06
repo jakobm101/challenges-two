@@ -12,33 +12,12 @@ const StyledLights = styled.ul`
 `;
 
 export default function Lights({lights, toggleLight}) {
+  console.log(lights[0].name);
+  
   
   return (
     <StyledLights>
-      <li>
-        <Light name="Living Room" lights={lights} toggleLight={toggleLight}/>
-      </li>
-      <li>
-        <Light name="Kitchen" />
-      </li>
-      <li>
-        <Light name="Bedroom" />
-      </li>
-      <li>
-        <Light name="Bathroom" />
-      </li>
-      <li>
-        <Light name="Garage" />
-      </li>
-      <li>
-        <Light name="Porch" />
-      </li>
-      <li>
-        <Light name="Garden" />
-      </li>
-      <li>
-        <Light name="Office" />
-      </li>
+      <Light light={lights[0]} key={lights[0].id} toggleLight={toggleLight}/>
     </StyledLights>
   );
 }
