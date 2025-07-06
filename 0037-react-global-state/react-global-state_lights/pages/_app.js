@@ -23,13 +23,6 @@ export default function App({ Component, pageProps }) {
     return acc + curr.isOn;
   }, 0);
 
-  // const toggleLight = (id) => {
-  //   const newLight = lights.find(light => light.id === id)
-  //   newLight.isOn = !newLight.isOn
-  //   const newLights = lights.map(light => (light.id === newLight.id)? newLight : light)
-  //   setLights(newLights)
-  // };
-
   const toggleLight = (id) => {
     setLights(
       lights.map((light) =>
@@ -37,6 +30,8 @@ export default function App({ Component, pageProps }) {
       )
     );
   };
+  console.log('count app', countLightsOn);
+  
 
   return (
     <Layout>
