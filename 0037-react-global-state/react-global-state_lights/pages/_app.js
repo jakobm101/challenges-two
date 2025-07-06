@@ -22,11 +22,14 @@ export default function App({ Component, pageProps }) {
   const countLightsOn = lights.reduce((acc, curr) => {
     return acc + curr.isOn;
   }, 0);
+  
+  const toggleLight = (id) => console.log('toggle', lights);
+  
 
   return (
     <Layout>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <Component {...pageProps} lights={lights} toggleLight={toggleLight} countLightsOn={countLightsOn}/>
     </Layout>
   );
 }

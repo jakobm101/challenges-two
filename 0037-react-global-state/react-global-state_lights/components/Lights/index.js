@@ -11,11 +11,12 @@ const StyledLights = styled.ul`
   justify-content: center;
 `;
 
-export default function Lights() {
+export default function Lights({lights, toggleLight}) {
+  
   return (
     <StyledLights>
       <li>
-        <Light name="Living Room" />
+        <Light name="Living Room" lights={lights} toggleLight={toggleLight}/>
       </li>
       <li>
         <Light name="Kitchen" />
