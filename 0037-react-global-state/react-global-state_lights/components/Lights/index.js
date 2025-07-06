@@ -14,7 +14,9 @@ const StyledLights = styled.ul`
 export default function Lights({ lights, toggleLight }) {
   return (
     <StyledLights>
-      <Light light={lights[0]} key={lights[0].id} toggleLight={toggleLight} />
+    { lights.map(light =>
+      <Light light={light} key={light.id} toggleLight={toggleLight} />
+    )}
     </StyledLights>
   );
 }
