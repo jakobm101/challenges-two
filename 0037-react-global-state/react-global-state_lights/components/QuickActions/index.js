@@ -13,12 +13,7 @@ export default function QuickActions({ setAllLights }) {
       <Button type="button" onClick={() => setAllLights(false)}>
         Turn all lights off
       </Button>
-      <Button
-        type="button"
-        onClick={() => {
-          console.log("Turn all lights on");
-        }}
-      >
+      <Button type="button" onClick={() => setAllLights(true)}>
         Turn all lights on
       </Button>
     </StyledQuickActions>
