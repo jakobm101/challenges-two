@@ -31,15 +31,13 @@ export default function App({ Component, pageProps }) {
     );
   };
 
-  const setAllLights = (bool) =>{
-    console.log('setting all lights', bool);
-    
+  const setAllLights = (bool) => {
     setLights(
       lights.map((light) => {
-        return { ...light, isOn: bool};
+        return { ...light, isOn: bool };
       })
     );
-  }
+  };
 
   return (
     <Layout isDimmed={!countLightsOn}>
