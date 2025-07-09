@@ -8,7 +8,7 @@ Use the following hints as guideline:
 
 - Use `createServer()` (`server.js`) and `.listen()` (`index.js`) to respond to the request on the port listened to.
 - `chance` must be installed and and can be used use it as follows:
-  - install via `npm install chance`
+****  - install via `npm install chance`
   - import via `import Chance from "chance";`
   - instantiate Chance so it can be used: `const chance = new Chance();` (you can do this outside the `createServer()` callback)
   - use the Chance documentation to find out how to create

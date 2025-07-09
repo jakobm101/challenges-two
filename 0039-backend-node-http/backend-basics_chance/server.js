@@ -1,3 +1,11 @@
-import { createServer } from "node:http";
+import { createServer } from 'node:http'
 
-// export const server = …
+const server = createServer((request, response)=> {
+ switch(request.url){
+    default: 
+    response.statusCode = 404
+    response.end('404 haha upsi')
+ } 
+})
+
+export default server
