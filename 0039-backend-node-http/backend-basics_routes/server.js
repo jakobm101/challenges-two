@@ -6,13 +6,13 @@ const server = createServer((request, response) => {
       response.statusCode = 200;
       response.end("Welcome home");
       break;
-    case "/fish":
+    case "/api/fish/1":
       response.statusCode = 200;
-      response.end("fish");
+      response.end("Shrimp");
       break;
-    case "/fish2":
+    case "/api/fish/2":
       response.statusCode = 200;
-      response.end("fish2");
+      response.end("Anemonefish");
       break;
     default:
       response.statusCode = 404;
