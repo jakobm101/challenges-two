@@ -7,6 +7,9 @@ Make your journal entries persistent by saving them to local storage.
 Install the [`use-local-storage-state`](https://github.com/astoilkov/use-local-storage-state) package and use it to make the journal entries persistent.
 
 > 💡 Does it make sense to also put the `filter` state into local storage? What are the differences to the user experience?
+😸 Filter does not need to go to local storage. 
+it filters the entries that are loaded from there.
+But actually it can be nice for visitors to come back to the filtered state they left, so actually i would prefer to add it to local storage
 
 ## Development
 
