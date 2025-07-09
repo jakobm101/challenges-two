@@ -5,7 +5,6 @@ export default function Products() {
   const { data } = useSWR("/api/products/", (url) =>
     fetch(url).then((res) => res.json())
   );
-  console.log("data", data);
 
   const { push } = useRouter();
 
