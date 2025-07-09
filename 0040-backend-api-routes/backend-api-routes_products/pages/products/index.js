@@ -1,14 +1,24 @@
+import { useRouter } from "next/router";
 import useSWR from "swr";
 
 export default function Products() {
   const { data } = useSWR("/api/products/", (url) =>
-    fetch(url).then((r) => r.json())
+    fetch(url).then((res) => res.json())
   );
-    console.log('data', data);
-    
+  console.log("data", data);
+
+  const { push } = useRouter();
+
   return (
     <>
       <h1>All the Products </h1>
+      <ul>
+        {data?.map((product) => (
+          <button key={product.id} onClick={() => push(`products/${product.id}`)}>
+            {product.name}
+          </button>
+        ))}
+      </ul>
     </>
   );
 }
