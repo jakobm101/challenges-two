@@ -1,9 +1,18 @@
+import useSWR from "swr";
+
 export default function HomePage() {
-  return (<>
-    <h1>Character Creator</h1>
-    <h4>Fantastic People from Imagi Nation</h4>
-    <h2>Name name</h2>
-    <p>birth</p>
-    <p>animal</p>
-  </>)
+  const { data: person, isLoading } = useSWR(`/api/`, (url) =>
+    fetch(url).then((res) => res.json())
+  );
+  if(isLoading) return 'is Loading'
+  return (
+    <>
+      <h1>Fantastic People from Imagi Nation</h1>
+      <h2>{person.name}</h2>
+      <h4>Soul Animal: {person['soul animal']}</h4>
+      <p>Birthday: {person.birthday}</p>
+    <p>City: {person.city}</p>
+    <p>Email: {person.email}</p>
+    </>
+  );
 }
