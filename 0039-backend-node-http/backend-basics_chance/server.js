@@ -10,7 +10,7 @@ const server = createServer((request, response)=> {
  switch(request.url){
          case '/':
          response.statusCode = 200
-         response.end('home')
+         response.end(line)
             break;
     default: 
     response.statusCode = 404
