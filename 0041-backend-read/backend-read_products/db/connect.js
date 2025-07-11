@@ -1,5 +1,23 @@
 import mongoose from "mongoose";
 
+mongoose.set('debug', true)
+
+
+
+if (mongoose.connection.readyState === 1) {
+  console.log("✅ Connected to DB");
+} else {
+  console.log("❌ Not connected");
+}
+
+mongoose.connection.on('error', err => {
+  console.error('❌ Connection error:', err)
+})
+
+mongoose.connection.on('connected', () => {
+  console.log('✅ DB connected')
+})
+
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
