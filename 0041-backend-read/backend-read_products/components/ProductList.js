@@ -20,7 +20,6 @@ export default function ProductList() {
         {data.map((product) => (
           <li key={product._id}>
             <StyledLink href={`/${product._id}`}>{product.name}</StyledLink>
-            {console.log(product?.review)}
           </li>
         ))}
       </StyledList>

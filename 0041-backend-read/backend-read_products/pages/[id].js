@@ -17,6 +17,7 @@ export default function Product() {
     return;
   }
 
+
   return (
     <ProductCard>
       <h2>{data.name}</h2>
@@ -24,6 +25,36 @@ export default function Product() {
       <p>
         Price: {data.price} {data.currency}
       </p>
+      <div
+        style={{
+          border: "black 1px solid",
+          borderRadius: "12px",
+          margin: "10px 0 10px 0 ",
+            padding: "10px"
+        }}
+      >
+        <h3>Reviews</h3>
+        {!data.reviews.length && <p>No reviews yet</p>}
+        <ul style={{ listStyle: "none", paddingInlineStart: "0", margin: "0" }}>
+          {data.reviews.map((review, index) => {
+            if (review?.text) {
+              return (
+                <li
+                  key={index}
+                  style={{
+                    border: "1px solid black",
+                    margin: "5px 0 5px 0",
+                    padding: "10px",
+                  }}
+                >
+                  <h4>{review.title}</h4>
+                  <p>{review.text}</p>
+                </li>
+              );
+            }
+          })}
+        </ul>
+      </div>
       <StyledLink href="/">Back to all</StyledLink>
     </ProductCard>
   );
