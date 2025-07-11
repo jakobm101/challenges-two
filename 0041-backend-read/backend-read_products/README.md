@@ -87,6 +87,7 @@ Open MongoDB Atlas and adapt your `fish-shop` database:
 - Add a new collection called `reviews`; insert the data from `bonus-reviews.json`.
 - Drop the `products` collection; recreate it with the same name, but now insert data from the `bonus-products.json` file.
   - Note: The data in `bonus-products.json` contain a `reviews` array with `ids` as a reference to the corresponding review in the `review` collection.
+    }catch(){}
 
 Create a schema for the `Review` model in the `db/models` folder.
 
