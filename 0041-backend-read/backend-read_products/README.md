@@ -55,6 +55,7 @@ Switch to `pages/api/products/index.js`:
 
 - Delete the import of `lib/products`.
 - Import `dbConnect` from the `db/connect.js` file.
+// - call dbConnect()
 - Import the `Product` model.
 - Make the `handler` function `async` and `await` the connection to the database.
 - If the `request.method` is `GET`,
