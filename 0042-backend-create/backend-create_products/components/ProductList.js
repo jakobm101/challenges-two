@@ -6,12 +6,15 @@ export default function ProductList() {
   const { data, isLoading } = useSWR("/api/products");
 
   if (isLoading) {
+    console.log("⭐️ loading");
     return <h1>Loading...</h1>;
   }
 
   if (!data) {
     return;
   }
+
+  console.log("⭐️ data", data);
 
   return (
     <>
