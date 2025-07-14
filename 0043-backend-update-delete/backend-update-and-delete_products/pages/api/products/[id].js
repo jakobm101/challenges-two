@@ -31,10 +31,13 @@ export default async function handler(request, response) {
 
   if (request.method === "DELETE") {
     console.log("💣 deleting", id);
-    
-    await Product.findByIdAndDelete(id);
-    response.status(200).json({ status: 'deletion completion'})
-    return;
+    try {
+      await Product.findByIdAndDelete(id);
+      response.status(200).json({ status: "deletion completion" });
+      return;
+    } catch (error) {
+      response.status(404).json({ error: error });
+    }
   }
 
   response.status(405).json({ status: "Method not allowed." });
