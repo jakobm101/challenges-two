@@ -29,5 +29,11 @@ export default async function handler(request, response) {
     }
   }
 
+  if (request.method === "DELETE") {
+    console.log("💣 deleting", id);
+    await Product.findByIdAndDelete(id);
+    return;
+  }
+
   response.status(405).json({ status: "Method not allowed." });
 }

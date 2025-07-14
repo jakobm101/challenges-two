@@ -12,16 +12,23 @@ export default function Product() {
 
   const { data, isLoading, mutate } = useSWR(`/api/products/${id}`);
   const [isEditing, setIsEditing] = useState(false);
+  const url = `/api/products/${id}`;
 
-  const onEdit = async (productData) => {
-    console.log("onEdit", productData);
-    const request = await fetch(`/api/products/${id}`, {
+  const handleEdit = async (productData) => {
+    console.log("handleEdit", productData);
+    await fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(productData),
     });
     mutate();
     setIsEditing(false);
+  };
+
+  const handleDelete = async () => {
+    console.log("deleting dummy");
+    await fetch(url, { method: "DELETE" });
+    router.push("/");
   };
 
   const closeForm = () => setIsEditing(false);
@@ -44,11 +51,12 @@ export default function Product() {
         </p>
         <StyledLink href="/">Back to all</StyledLink>
         <Button onClick={() => setIsEditing(!isEditing)}>Edit</Button>
+        <Button onClick={handleDelete}>Delete</Button>
       </ProductCard>
       {isEditing && (
         <ProductForm
           data={data}
-          onEdit={onEdit}
+          onEdit={handleEdit}
           isEditing={isEditing}
           closeForm={closeForm}
         />
