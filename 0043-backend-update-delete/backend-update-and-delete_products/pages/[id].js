@@ -9,8 +9,14 @@ export default function Product() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading } = useSWR(`/api/products/${id}`);
-  const [ isEditing, setIsEditing ] = useState(true);
+  const { data, isLoading, mutate } = useSWR(`/api/products/${id}`);
+  const [isEditing, setIsEditing] = useState(true);
+
+  const onEdit = (productData) => {
+    console.log("onEdit", productData);
+    
+    mutate();
+  };
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -31,7 +37,7 @@ export default function Product() {
         <StyledLink href="/">Back to all</StyledLink>
       </ProductCard>
       {isEditing && (
-        <ProductForm data={data} onSubmit={""} isEditing={isEditing} />
+        <ProductForm data={data} onEdit={onEdit} isEditing={isEditing} />
       )}
     </>
   );

@@ -5,7 +5,7 @@ import StyledButton from "@/components/Button";
 export default function ProductForm({
   data = { description: "", price: "", currency: "GBR", name: "" },
   isEditing,
-  onSubmit,
+  onEdit,
 }) {
   const { mutate } = useSWR("/api/products");
 
@@ -15,20 +15,23 @@ export default function ProductForm({
     const formData = new FormData(event.target);
     const productData = Object.fromEntries(formData);
 
-    const response = await fetch("/api/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(productData),
-    });
+    if (!isEditing) {
+      const response = await fetch("/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
+      });
 
-    if (!response.ok) {
-      console.error(response.status);
-      return;
+      if (!response.ok) {
+        console.error(response.status);
+        return;
+      }
+      mutate();
     }
+    isEditing && onEdit(productData);
 
-    mutate();
     event.target.reset();
   }
 
@@ -62,13 +65,13 @@ export default function ProductForm({
       </StyledLabel>
       <StyledLabel htmlFor="currency">
         Currency:
-        <select id="currency" name="currency" >
+        <select id="currency" name="currency">
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
           <option value="GBP">GBP</option>
         </select>
       </StyledLabel>
-      <StyledButton type="submit">{isEditing ? 'Edit' : 'Submit'}</StyledButton>
+      <StyledButton type="submit">{isEditing ? "Edit" : "Submit"}</StyledButton>
     </StyledForm>
   );
 }
