@@ -12,9 +12,13 @@ export default function Product() {
   const { data, isLoading, mutate } = useSWR(`/api/products/${id}`);
   const [isEditing, setIsEditing] = useState(true);
 
-  const onEdit = (productData) => {
+  const onEdit = async (productData) => {
     console.log("onEdit", productData);
-    
+    const request = await fetch(`/api/products/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(productData),
+    });
     mutate();
   };
 

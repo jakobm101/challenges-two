@@ -16,6 +16,12 @@ export default async function handler(request, response) {
     response.status(200).json(product);
     return;
   }
+  
+  if(request.method === 'PUT'){
+    console.log('⭐️ putting', request.body);
+
+    
+  }
 
   response.status(405).json({ status: "Method not allowed." });
 }
