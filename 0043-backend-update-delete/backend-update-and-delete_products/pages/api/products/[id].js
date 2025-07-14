@@ -16,11 +16,17 @@ export default async function handler(request, response) {
     response.status(200).json(product);
     return;
   }
-  
-  if(request.method === 'PUT'){
-    console.log('⭐️ putting', request.body);
 
-    
+  if (request.method === "PUT") {
+    console.log("⭐️ putting", request.body);
+    try {
+      await Product.findByIdAndUpdate(id, request.body);
+      response.status(200).json();
+      return;
+    } catch (e) {
+      response.status(404).json({ error: e });
+      return;
+    }
   }
 
   response.status(405).json({ status: "Method not allowed." });
