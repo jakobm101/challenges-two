@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import useSWR from "swr";
 import StyledButton from "@/components/Button";
+import { useState, useImmutableState } from "react";
 
 export default function ProductForm({
   data = { description: "", price: "", currency: "GBR", name: "" },
   isEditing,
   onEdit,
+  closeForm
 }) {
   const { mutate } = useSWR("/api/products");
 
@@ -65,13 +67,14 @@ export default function ProductForm({
       </StyledLabel>
       <StyledLabel htmlFor="currency">
         Currency:
-        <select id="currency" name="currency">
+        <select id="currency" name="currency" defaultValue={data.currency}>
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
-          <option value="GBP">GBP</option>
+          <option value="GBR">GBP</option>
         </select>
       </StyledLabel>
       <StyledButton type="submit">{isEditing ? "Edit" : "Submit"}</StyledButton>
+    <StyledButton onClick={closeForm}>Cancel</StyledButton>
     </StyledForm>
   );
 }

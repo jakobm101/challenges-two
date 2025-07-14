@@ -4,13 +4,14 @@ import { useRouter } from "next/router";
 import StyledLink from "@/components/Link";
 import { useState } from "react";
 import ProductForm from "@/components/ProductForm";
+import Button from "@/components/Button";
 
 export default function Product() {
   const router = useRouter();
   const { id } = router.query;
 
   const { data, isLoading, mutate } = useSWR(`/api/products/${id}`);
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
 
   const onEdit = async (productData) => {
     console.log("onEdit", productData);
@@ -20,7 +21,10 @@ export default function Product() {
       body: JSON.stringify(productData),
     });
     mutate();
+    setIsEditing(false);
   };
+
+  const closeForm = () => setIsEditing(false);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -39,9 +43,15 @@ export default function Product() {
           Price: {data.price} {data.currency}
         </p>
         <StyledLink href="/">Back to all</StyledLink>
+        <Button onClick={() => setIsEditing(!isEditing)}>Edit</Button>
       </ProductCard>
       {isEditing && (
-        <ProductForm data={data} onEdit={onEdit} isEditing={isEditing} />
+        <ProductForm
+          data={data}
+          onEdit={onEdit}
+          isEditing={isEditing}
+          closeForm={closeForm}
+        />
       )}
     </>
   );
