@@ -29,7 +29,6 @@ export default function Product() {
     console.log("deleting dummy");
     await fetch(url, { method: "DELETE" });
     router.push("/");
-    //rotuer push not working
   };
 
   const closeForm = () => setIsEditing(false);
@@ -57,7 +56,7 @@ export default function Product() {
       {isEditing && (
         <ProductForm
           data={data}
-          onEdit={handleEdit}
+          onSubmit={handleEdit}
           isEditing={isEditing}
           closeForm={closeForm}
         />

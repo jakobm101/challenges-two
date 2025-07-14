@@ -1,43 +1,24 @@
 import styled from "styled-components";
-import useSWR from "swr";
 import StyledButton from "@/components/Button";
-import { useState, useImmutableState } from "react";
 
 export default function ProductForm({
   data = { description: "", price: "", currency: "GBR", name: "" },
   isEditing,
-  onEdit,
+  onSubmit,
   closeForm,
 }) {
-  const { mutate } = useSWR("/api/products");
 
-  async function handleSubmit(event) {
+  async function handleSubmitPreparation(event) {
     event.preventDefault();
-
     const formData = new FormData(event.target);
     const productData = Object.fromEntries(formData);
 
-    if (isEditing) return onEdit(productData);
-
-    const response = await fetch("/api/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(productData),
-    });
-
-    if (!response.ok) {
-      console.error(response.status);
-      return;
-    }
-    mutate();
-
+    onSubmit(productData)
     event.target.reset();
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmitPreparation}>
       <StyledHeading>
         {isEditing ? "Edit fish" : "Add a new Fish"}
       </StyledHeading>
