@@ -7,7 +7,7 @@ export default function ProductForm({
   data = { description: "", price: "", currency: "GBR", name: "" },
   isEditing,
   onEdit,
-  closeForm
+  closeForm,
 }) {
   const { mutate } = useSWR("/api/products");
 
@@ -17,22 +17,21 @@ export default function ProductForm({
     const formData = new FormData(event.target);
     const productData = Object.fromEntries(formData);
 
-    if (!isEditing) {
-      const response = await fetch("/api/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(productData),
-      });
+    if (isEditing) return onEdit(productData);
 
-      if (!response.ok) {
-        console.error(response.status);
-        return;
-      }
-      mutate();
+    const response = await fetch("/api/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    });
+
+    if (!response.ok) {
+      console.error(response.status);
+      return;
     }
-    isEditing && onEdit(productData);
+    mutate();
 
     event.target.reset();
   }
@@ -74,7 +73,7 @@ export default function ProductForm({
         </select>
       </StyledLabel>
       <StyledButton type="submit">{isEditing ? "Edit" : "Submit"}</StyledButton>
-    <StyledButton onClick={closeForm}>Cancel</StyledButton>
+      <StyledButton onClick={closeForm}>Cancel</StyledButton>
     </StyledForm>
   );
 }
