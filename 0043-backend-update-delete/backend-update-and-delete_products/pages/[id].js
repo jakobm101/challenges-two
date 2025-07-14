@@ -30,7 +30,7 @@ export default function Product() {
         </p>
         <StyledLink href="/">Back to all</StyledLink>
       </ProductCard>
-      {isEditing ?? (
+      {isEditing && (
         <ProductForm data={data} onSubmit={""} isEditing={isEditing} />
       )}
     </>
