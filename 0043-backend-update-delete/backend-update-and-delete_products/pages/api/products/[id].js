@@ -31,7 +31,9 @@ export default async function handler(request, response) {
 
   if (request.method === "DELETE") {
     console.log("💣 deleting", id);
+    
     await Product.findByIdAndDelete(id);
+    response.status(200).json({ status: 'deletion completion'})
     return;
   }
 

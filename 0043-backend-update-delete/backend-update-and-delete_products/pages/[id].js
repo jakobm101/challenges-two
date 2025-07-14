@@ -29,6 +29,7 @@ export default function Product() {
     console.log("deleting dummy");
     await fetch(url, { method: "DELETE" });
     router.push("/");
+    //rotuer push not working
   };
 
   const closeForm = () => setIsEditing(false);
